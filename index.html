@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <script src="external/angular.js"></script>
+    <script src="external/angular-animate.js"></script>
+    <script src="external/angular-sanitize.js"></script>
+    <script src="external/ui-bootstrap-tpls-2.1.4.js"></script>
+    <link rel="stylesheet" type="text/css" href="external/ng-tags-input.min/ng-tags-input.min.css">
+    <script src="external/ng-tags-input.min/ng-tags-input.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <title>Career Paths</title>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
+        <div class="jumbotron">
+            <div><span class="spring-board">Spring Board</span>
+                <span class="learning-hub">Learning Hub</span>
+                <span class="qoutation"> - Choose best course make your carrer better.</span></div>
+        </div>
+    </div>
+    <div class="container">
+        <tags-input ng-model="tags">
+            <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="path in paths | filter:filterPahts(filterPath)">
+                <div class="thumbnail">
+                    <div class="image" style="background-image:url({{path.image}})"></div>
+                    <div class="caption">
+                        <h3>{{path.name}}</h3>
+                        <p class="desctiption">{{path.description}}</p>
+                        <div class="btn-group vote-button-group">
+                            <span class="vote-text">Vote:</span>
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-model="path.vote" uib-btn-radio="'agree'">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" ng-model="path.vote" uib-btn-radio="'disagree'">
+                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="false"></span>
+                            </button>
+                        </div>
+                        <div class="curriculum-container">
+                            <a ng-href="{{path.sign_up}}" class="btn btn-primary curriculum-button" role="button" target="_blank"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>View Curriculum</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
